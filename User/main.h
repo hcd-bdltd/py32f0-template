@@ -39,6 +39,7 @@ extern "C"
 #include "py32f0xx_ll_pwr.h"
 #include "py32f0xx_ll_rcc.h"
 #include "py32f0xx_ll_system.h"
+#include "py32f0xx_ll_tim.h"
 #include "py32f0xx_ll_utils.h"
 
 #include "py32f0xx_bsp_clock.h"
