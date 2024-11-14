@@ -16,12 +16,12 @@ TOP			= .
 BDIR		= $(TOP)/$(BUILD_DIR)
 
 # For each direcotry, add it to csources
-CSOURCES 	:= $(foreach dir, $(CDIRS), $(shell find $(TOP)/$(dir) -maxdepth 1 -name '*.c'))
+CSOURCES	:= $(foreach dir, $(CDIRS), $(shell find $(TOP)/$(dir) -maxdepth 1 -name '*.c'))
 # Add single c source files to csources
-CSOURCES 	+= $(addprefix $(TOP)/, $(CFILES))
+CSOURCES	+= $(addprefix $(TOP)/, $(CFILES))
 # C++ files
 CPPSOURCES	:= $(foreach dir, $(CDIRS), $(shell find $(TOP)/$(dir) -maxdepth 1 -name '*.cpp'))
-CPPSOURCES 	+= $(addprefix $(TOP)/, $(CPPFILES))
+CPPSOURCES	+= $(addprefix $(TOP)/, $(CPPFILES))
 
 # Then assembly source folders and files
 ASOURCES := $(foreach dir, $(ADIRS), $(shell find $(TOP)/$(dir) -maxdepth 1 -name '*.s'))
@@ -36,14 +36,14 @@ DEPS=$(CSOURCES:$(TOP)/%.c=$(BDIR)/%.d)
 
 # Arch and target specified flags
 ARCH_FLAGS	:= -mthumb -mcpu=cortex-m0plus
-# Debug options, -gdwarf-2 for debug, -g0 for release 
+# Debug options, -gdwarf-2 for debug, -g0 for release
 # https://gcc.gnu.org/onlinedocs/gcc-12.2.0/gcc/Debugging-Options.html
 #  -g: system’s native format, -g0:off, -g/g1,-g2,-g3 -> more verbosely
 #  -ggdb: for gdb, -ggdb0:off, -ggdb/ggdb1,-ggdb2,-ggdb3 -> more verbosely
 #  -gdwarf: in DWARF format, -gdwarf-2,-gdwarf-3,-gdwarf-4,-gdwarf-5
 DEBUG_FLAGS ?= -gdwarf-3
-
 OPT			?= -Og
+
 # C flags
 TGT_CFLAGS		?= $(ARCH_FLAGS) $(DEBUG_FLAGS) $(OPT) -std=c99 $(addprefix -D, $(LIB_FLAGS)) -Wall -ffunction-sections -fdata-sections
 # C++ flags

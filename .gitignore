@@ -1,3 +1,5 @@
 .vscode/
+.cache/
 /Build*
 /Temp*
+compile_commands.json
